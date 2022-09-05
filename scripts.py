@@ -7,7 +7,7 @@ class Flatmate:
         self.days_in_house = days_in_house
 
     def pays(self, bill):
-        return (self.days_in_house/30) * bill
+        print(f"{self.name} pays: {bill*self.days_in_house} ")
 
 
 class Bill:
