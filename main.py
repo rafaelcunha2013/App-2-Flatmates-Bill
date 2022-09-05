@@ -17,8 +17,8 @@ flatmate2 = Flatmate(name2, days2)
 
 total_days = flatmate1.days_in_house + flatmate2.days_in_house
 
-print(f"{flatmate1.name} pays: {flatmate1.pays(bill.amount/total_days)} ")
-print(f"{flatmate2.name} pays: {flatmate2.pays(bill.amount/total_days)} ")
+print(f"{flatmate1.name} pays: {flatmate1.pays(bill, flatmate2)} ")
+print(f"{flatmate2.name} pays: {flatmate2.pays(bill, flatmate1)} ")
 
 filename = 'bill_' + bill.period
 report = PdfReport(filename)
