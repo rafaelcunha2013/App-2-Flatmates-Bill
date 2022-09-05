@@ -39,6 +39,7 @@ class PdfReport:
 
         pdf.set_y(50)
         pdf.set_font(family='Arial', style='B', size=30)
+        # w=0 --> Cell takes the entire length of the page
         pdf.cell(w=200, h=10, txt='Flatmates Bill', border=0, ln=1, align='C', fill=False, link='')
 
         # pdf.ln(1)
@@ -46,7 +47,9 @@ class PdfReport:
 
         pdf.set_y(80)
         pdf.set_font('Arial', 'B', size=20)
-        pdf.cell(w=200, h=10, txt=f"Period: \t\t\t" + bill.period, border=0, ln=1, align='L', fill=False, link='')
+
+        pdf.cell(w=50, h=10, txt="Period:", border=0, ln=0, align='L')
+        pdf.cell(w=50, h=10, txt=bill.period, border=0, ln=1, align='L')
 
         # Add cells after each other instead of tab!!!
         text = [flatmate1.name + ":\t\t\t\t\t" + "{:.2f}".format(flatmate1.pays(bill, flatmate2)),
