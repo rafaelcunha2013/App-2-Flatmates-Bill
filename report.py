@@ -1,5 +1,6 @@
 from fpdf import FPDF
 import webbrowser
+import os
 
 from flat import Flatmate, Bill
 
@@ -39,11 +40,15 @@ class PdfReport:
         pdf.cell(w=50, h=10, txt=flatmate2.name, border=0, ln=0, align='L')
         pdf.cell(w=50, h=10, txt="{:.2f}".format(flatmate2.pays(bill, flatmate1)), border=0, ln=1, align='L')
 
-        pdf.output(self.filename)
+        pdf.output(f"files/{self.filename}")
 
         # Open the .pdf file in the default computer viewer
         # For MAC and LINUX
         # webbrowser.open('file://' + os.path.realpath(self.filename))
+        # The bellow command changes the directory
+        # To print the directory: os.getcwd()
+        # To return to the previous directory: os.chdir("..")
+        os.chdir("files")
         webbrowser.open(self.filename)
 
 
