@@ -16,7 +16,7 @@ class PdfReport:
         pdf = FPDF()
         pdf.add_page()
         # Insert image
-        pdf.image('.\\files\\house.png', 10, 8, 13)
+        pdf.image("files/house.png", 10, 8, 13)
 
         # Insert tittle
         pdf.set_y(50)
