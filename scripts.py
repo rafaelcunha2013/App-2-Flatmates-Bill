@@ -51,13 +51,31 @@ class PdfReport:
         pdf.cell(w=50, h=10, txt="Period:", border=0, ln=0, align='L')
         pdf.cell(w=50, h=10, txt=bill.period, border=0, ln=1, align='L')
 
-        # Add cells after each other instead of tab!!!
-        text = [flatmate1.name + ":\t\t\t\t\t" + "{:.2f}".format(flatmate1.pays(bill, flatmate2)),
-                flatmate2.name + ":\t\t\t\t\t" + "{:.2f}".format(flatmate2.pays(bill, flatmate1))]
-        pdf.ln(1)
         pdf.set_font('Arial', size=15)
-        for my_text in text:
-            pdf.cell(w=200, h=10, txt=my_text, border=0, ln=1, align='L', fill=False, link='')
+
+        pdf.cell(w=50, h=10, txt=flatmate1.name, border=0, ln=0, align='L')
+        pdf.cell(w=50, h=10, txt="{:.2f}".format(flatmate2.pays(bill, flatmate1), border=0, ln=1, align='L'))
+
+        pdf.cell(w=50, h=10, txt=flatmate2.name, border=0, ln=0, align='L')
+        pdf.cell(w=50, h=10, txt="{:.2f}".format(flatmate1.pays(bill, flatmate2), border=0, ln=1, align='L'))
+
+        # # Add cells after each other instead of tab!!!
+        # text = [flatmate1.name + ":\t\t\t\t\t" + "{:.2f}".format(flatmate1.pays(bill, flatmate2)),
+        #         flatmate2.name + ":\t\t\t\t\t" + "{:.2f}".format(flatmate2.pays(bill, flatmate1))]
+        # pdf.ln(1)
+        # pdf.set_font('Arial', size=15)
+        # for my_text in text:
+        #     pdf.cell(w=200, h=10, txt=my_text, border=0, ln=1, align='L', fill=False, link='')
         pdf.output(self.filename + '.pdf')
+
+
+if __name__ == '__main__':
+    bill = Bill(100, 'December 2022')
+    flatmate1 = Flatmate("Rafael", 20)
+    flatmate2 = Flatmate("Caio", 13)
+
+    report = PdfReport('bill_' + bill.period)
+    report.generate(flatmate1, flatmate2, bill)
+
 
 
